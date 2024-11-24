@@ -1,0 +1,1044 @@
+body {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 99%;
+    height: 100%;
+    background-color: rgb(155, 211, 217);
+}
+
+/* ENTIRE WHITE AREA */
+#playablearea {
+    width: 2500px;
+    height: 1200px;
+    background-color: rgb(208, 252, 255);
+    border-style: solid;
+    border-width: 0px;
+    border-color: black;
+    margin-top: 30px;
+    draggable: false;
+    unselectable: true;
+    border: #c1c1c1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    border-radius: 0.8em;
+    filter: drop-shadow(0 0.3em 0.9em rgba(0, 0, 0, 0.25));
+}
+
+/* SECTION 2 */
+#section2 {
+    height:1300px;
+    display: flex;
+    justify-content: center;
+    border-style: solid;
+    border-color: rgb(120, 203, 255);
+    border-width: 0px;
+    margin-top: 30px;
+}
+
+/* BOARD THAT HOLDS ALL BARS */
+#board {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+    flex-wrap: wrap;
+    width: 1700px;
+
+    border-style: solid;
+    border-color: black;
+    border-width: 0px; 
+}
+
+/* Cardslot within the bar */
+.cardslot {
+    width: 80%;
+    /* max-width: 80px; /* Max width constraint for larger screens */
+    height: 70%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 1px dashed rgb(171, 218, 214);
+    border-radius: 0.8em;
+    background-color: white;
+    box-sizing: border-box;
+    overflow: hidden; /* Hide any overflow to keep the card contained */
+}
+
+/* Playing card inside the cardslot */
+.playingcard {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    max-width: 100%; /* Ensures the card doesn't exceed the slot's width */
+    max-height: 100%; /* Ensures the card doesn't exceed the slot's height */
+    border-radius: 0.8em;
+}
+
+
+.symbol {
+    width: 45px; 
+    height: 50px;
+    display: flex; 
+    justify-content: center; 
+    color: rgb(120, 213, 216);
+    align-items: center; 
+    border-width:2px;
+    border-style:solid;
+    border-color:rgb(171, 218, 214);
+    position: relative;
+}
+
+/* BOTTOM SECTION */
+#chordoptions {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    width: 1200px; 
+    height: 90%;
+    background-color: #ffffff;
+    border-style: solid;
+    border-color: rgb(120, 203, 255);
+    border-width: 0px;
+    border-radius: 0.8em;
+}
+
+.chord-option-display {
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    border-color: black;
+    border-width: 0px;
+    width: 90%;
+    height: 30px;
+    border-style: solid;
+    font-size: 30px;
+    color: rgb(120, 213, 216);
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+
+.chordsquare {
+    width: 100%; 
+    height: 75%; 
+    display: flex; 
+    justify-content: center;
+    align-items: center; 
+    border-style: solid;
+    border-color: rgb(224, 0, 0);
+    border-width: 0px; 
+}
+
+.bar {
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+    height:300px;
+    width: 2px;
+    justify-content: center;
+    border-radius: 0.8em;
+    background-color: rgb(249, 255, 254);
+    border-style: solid;
+    border-color: rgb(77, 255, 187);
+    border-width: 1px;
+}
+
+.line {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    width: 90%;
+    height: 45%;
+    padding-right: 10px ;
+    gap: 30px; /* Space between bars in each row */
+}
+
+.symbol {
+    font-size: 30px;
+    border-width: 1px;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    border-style: dashed;
+    border-radius: 0.5em;
+    color: rgb(120, 213, 216);
+    background-color: white;
+}
+
+/* SECTION TO HOLD SCALE BUTTONS */
+.sunmoonbuttons {
+    display: flex;
+    flex-direction: row;
+    border-width: 0px;
+    border-color: black;
+    border-style: solid;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    height: 100%;
+    width: 100%;
+}
+
+.sunmoonbutton {
+    border-width:1px;
+    border-style:solid;
+    border-color:rgb(171, 218, 214);
+    font-family: "Poppins",sans-serif;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    border-radius: 8em;
+    align-items: center;
+    width: 75px;
+    height: 40%;
+    color: rgba(62, 137, 130, 0.655);
+    filter: drop-shadow(0 0.1em 0.1em rgba(0, 0, 0, 0.235));
+}
+
+.sunmoonbutton:active {
+    background: #e5e5e5;
+    box-shadow: inset 0px 0px 5px #c1c1c1;
+    outline: none;
+}
+
+.keybuttons {
+    display: flex;
+    width: 300px;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    height: 50%;
+}
+
+.keybutton {
+    border-width:1px;
+    border-style:solid;
+    border-color:rgb(171, 218, 214);
+    font-family: "Poppins",sans-serif;
+    font-size: 1em;
+    font-style: normal;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    justify-content: center;
+    border-radius: 2em;
+    align-items: center;
+    margin: 5px;
+    width: 40px;
+    height: 40px;
+    color: rgba(22, 68, 63, 0.655);
+    filter: drop-shadow(0 0.1em 0.1em rgba(0, 0, 0, 0.235));
+}
+
+.playingcard {
+    width: 90%;
+    height: 90%;
+    max-width: 90%;
+    max-height: 90%;
+    position: relative;
+    cursor: move;
+    transition: transform 0.2s;
+    perspective: 1000px; /* perspective for 3D flip */
+    border-radius: 20px; 
+}
+
+.chordbox {
+    width: 100px;
+    height: 180px;
+    border-style: solid;
+    border-color: black;
+    border-width: 0px;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+}
+
+.imagesize {
+    width: 100%;
+    height: 100%;
+    max-width: 100%;
+    max-height: 100%;
+    position: relative;
+    filter: drop-shadow(0 0.3em 0.9em rgba(0, 0, 0, 0.25));
+    cursor: move;
+    border-radius: 8px;
+    transition: transform 0.2s;
+}
+
+.highlight {
+    background-color: rgb(255, 239, 255);
+}
+
+.hoverhighlighter {
+    background-color: rgb(250, 180, 251);
+}
+
+/* Card Flip Styling */
+.cardinner {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    transform-style: preserve-3d;
+    transition: transform 0.6s;
+}
+
+.cardinner.flipped {
+    transform: rotateY(180deg);
+    color: black;
+}
+
+.cardface {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    backface-visibility: hidden;
+    border-radius: 16px;
+    box-shadow: 0px 3px 18px 3px rgba(0, 0, 0, 0.2);
+    overflow: hidden;
+}
+
+.cardinnerfront {
+    transform: rotateY(0deg);
+    z-index: 1;
+}
+
+.cardinnerback {
+    transform: rotateY(180deg);
+    z-index: -1;
+}
+
+.firstbeat {
+    border-style: solid;
+    background-color: #ffffff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.firstbeatdrop {
+    height:50%;
+    width:95%;
+    border-width: 2px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
+
+.trashcan {
+    border-width: 2px;
+    border-style: solid;
+    width: 80px;
+    border-color: pink;
+    margin-left: 10px;
+    margin-right: 10px;
+    background-color: rgb(255, 239, 239);
+}
+
+.section {
+    background-color: rgb(255, 255, 255);
+    border-width: 0px;
+    border-color: black;
+    border-style: solid;
+    width: 2350px;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    border-radius: 0.8em;
+    margin: 15px;
+    justify-content: center;
+}
+
+#section1 {
+    display: flex;
+    height: 90%;
+    width: 600px;
+    flex-wrap: wrap;
+    gap:20px;
+    border-style: solid;
+    border-color: rgb(120, 203, 255);
+    border-width: 3px;    border-style: solid;
+    border-color: rgb(120, 203, 255);
+    border-width: 0px;
+}
+
+#section3 {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    height: 300px;
+    gap: 40px;
+    width:1700px;
+    background-color: rgb(208, 252, 255);
+    
+}
+
+.pressed {
+    background-color:  rgb(243, 145, 243);
+    box-shadow: inset 0px 4px 6px rgba(0, 0, 0, 0.2);
+    border-color: #36df36;
+    color:#000000;
+}
+
+.popup-modal {
+    /* Modal overlay styling */
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent background */
+    z-index: 1000;
+}
+
+.popup-modal.hidden {
+    display: none;
+}
+
+.popup-modal.visible {
+    display: flex; /* Shows the modal */
+}
+
+.popup-content {
+ /* Set this so the close button is positioned relative to the popup */
+ display: flex;
+ flex-direction: column;
+ justify-content: center;
+ align-items: center;   
+ background-color: #fff;
+    padding: 20px;
+    height: 400px;
+    width: 800px;
+    border-radius: 8px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+    text-align: center;
+}
+#popupImage {
+    display: block;
+    margin: 10px auto; /* Centers the image horizontally and adds some space above */
+    border-radius: 10px; /* Adjust the radius to your preference */
+    max-width: 100%; /* Ensures the image scales within the popup */
+    max-height: 300px;
+    cursor: crosshair;
+}
+
+
+
+
+.close-button {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background-color: #fcc0c0;
+    color: rgb(255, 255, 255);
+    border: none;
+    padding: 5px 10px;
+    font-size: 16px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.close-button:hover {
+    background-color: #a6f6fc;
+}
+
+
+
+
+
+.popup-card-image {
+    width: 150px; /* Adjust size as needed */
+    height: auto;
+    border-radius: 10px; /* Rounded edges */
+    display: block;
+    cursor: pointer;
+}
+.popupimagescontainer {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    height: 400px;
+    width: 400px;
+    border: black;
+    border-style: solid;
+    border-width: 0px;
+}
+
+.popup-card-image:hover {
+    box-shadow: 0 0 15px 5px #02ffc8; /* More blur and spread for a larger glow effect */}
+
+.playingcard:hover {
+    box-shadow: 0 0 15px 5px #02ffc8!important;
+    animation: jiggle 0.9s ease-in-out infinite;
+}
+
+.cardslot, .chordoptions {
+    overflow: visible;
+}
+
+@keyframes jiggle {
+    0%, 100% { transform: rotate(0deg) translateX(0); }
+    25% { transform: rotate(2deg) translateX(-1px); }
+    50% { transform: rotate(-2deg) translateX(1px); }
+    75% { transform: rotate(2deg) translateX(-1px); }
+}
+
+
+
+/* Disable hover effect temporarily */
+.no-hover:hover {
+    box-shadow: none;
+    animation: none;
+}
+
+
+
+/* Animation for the symbol box */
+.symbol-highlight {
+    animation: symbolPulse 0.5s ease-in-out;
+}
+
+@keyframes symbolPulse {
+    0%, 100% {
+        transform: scale(1);
+        opacity: 1;
+    }
+    50% {
+        transform: scale(1.2);
+        opacity: 0.8;
+    }
+}
+
+
+
+/* Animation for the cardslot box */
+.cardslot-highlight {
+    animation: slotPulse 0.5s ease-in-out;
+}
+
+@keyframes slotPulse {
+    0%, 100% {
+        transform: scale(1);
+        box-shadow: 0 0 0 transparent;
+    }
+    50% {
+        transform: scale(1.05);
+        box-shadow: 0 0 10px rgba(247, 0, 255, 0.6);
+    }
+}
+
+@keyframes flashOrange {
+    0%, 100% {
+        background-color: transparent;
+    }
+    50% {
+        background-color: rgba(226, 139, 252, 0.596);
+    }
+}
+
+.symbol-highlight {
+    animation: flashOrange 0.5s ease-in-out;
+}
+
+/* Updated playable area */
+#playablearea {
+    background-color: rgb(208, 252, 255);
+    border: 0px solid black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    border-radius: 0.8em;
+    box-sizing: border-box;
+    height: 1250px;
+    width: 2450px;
+}
+
+/* Flex layout for the board */
+#board {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    width: 98%;
+    height: 85%;
+    gap: 20px;
+    padding-top: 0px;
+    overflow:auto;
+}
+
+/* Flex layout for each bar */
+.bar {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgb(249, 255, 254);
+    border: 1px solid rgb(77, 255, 187);
+    border-radius: 0.8em;
+    gap: 7px;
+    height: 100%;
+    width: 28%;
+    flex-wrap: wrap;
+}
+
+/* Ensure each beat has enough space */
+.beat {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 95%;
+    width: 30px;
+    gap: 5px;
+}
+
+/* Cardslot within the bar */
+.cardslot {
+    width: 95%;
+    /* max-width: 80px; /* Max width constraint for larger screens */
+    height: 65%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 1px dashed rgb(171, 218, 214);
+    border-radius: 0.8em;
+    background-color: white;
+    box-sizing: border-box;
+}
+
+/* Symbol inside the beat */
+.symbol {
+    width: 95%;
+    height: 30%;
+    /* max-width: 80px; /* Max width constraint for larger screens */
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 4em; /* Adjust font size as needed */
+    color: rgb(120, 213, 216);
+    border: 1px solid rgb(171, 218, 214);
+    border-radius: 1em;
+    background-color: white;
+}
+
+.trashcan {
+    height: 90%;
+    width: 80px;
+}
+
+@keyframes flashOrange {
+    0%, 100% {
+        background-color: transparent;
+        border-color: transparent;
+    }
+    50% {
+        background-color: rgba(255, 220, 106, 0.514); /* Flash background color */
+        border-color: rgb(255, 0, 234); /* Flash border color */
+        color: rgb(0, 0, 0);
+    }
+}
+
+.symbol-highlight {
+    animation: slotPulse 0.5s ease-in-out;
+    border-width: 2px;
+    border-style: solid;
+}
+
+@keyframes slotPulse {
+    0%, 100% {
+        transform: scale(1);
+        box-shadow: 0 0 0 transparent;
+    }
+    50% {
+        transform: scale(1.2);
+        box-shadow: 0 0 30px rgba(234, 0, 255, 0.6);
+    }
+}
+
+.cardslot-highlight {
+    animation: slotPulse 0.5s ease-in-out;
+}
+
+.highlight-border {
+    border: 3px solid rgb(162, 0, 255); /* Adjust the color and width as desired */
+    background-color: #f28cff3d;
+    color: rgb(162, 0, 255);
+}
+
+.chordcards {
+    display: flex;
+    
+}
+
+.beat {
+    width: 42%;
+    height: 95%;
+}
+
+.adjust-beats-button {
+    width: 100px;
+    height: 30px;
+    background-color: rgb(240, 240, 240);
+    border: 1px solid rgb(171, 218, 214);
+    border-radius: 8px;
+    font-family: "Poppins", sans-serif;
+    font-size: 14px;
+    color: rgba(62, 137, 130, 0.8);
+    cursor: pointer;
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+    align-self: center;
+    margin-top: 10px;
+}
+
+.adjust-beats-button:hover {
+    background-color: rgb(171, 218, 214);
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.beats-container {
+    width: 80%;
+    display: flex;
+    flex-direction: row;
+    height: 90%;
+    display: flex;
+    justify-content: center;
+    margin-left: 30px;
+    gap:10px;
+}
+
+.beat-controls-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 5px;
+    width: 5%;
+    margin-top: 10px;
+}
+
+.add-beat-button,
+.remove-beat-button {
+    width: 30px;
+    height: 30px;
+    background-color: rgb(240, 240, 240);
+    border: 1px solid rgb(171, 218, 214);
+    border-radius: 50%;
+    font-family: "Poppins", sans-serif;
+    font-size: 18px;
+    color: rgba(62, 137, 130, 0.8);
+    cursor: pointer;
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.add-beat-button:hover,
+.remove-beat-button:hover {
+    background-color: rgb(171, 218, 214);
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.beat-controls-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+    margin-top: 5px;
+}
+
+.add-beat-button,
+.remove-beat-button {
+    width: 25px;
+    height: 25px;
+    background-color: rgba(200, 240, 240, 0.6); /* Subtle color matching the board */
+    border: 1px solid rgba(171, 218, 214, 0.5); /* Faint border */
+    border-radius: 50%;
+    font-family: Arial, sans-serif;
+    font-size: 14px;
+    font-weight: bold;
+    color: rgba(50, 100, 100, 0.8); /* Muted text color */
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: background-color 0.2s ease, transform 0.1s ease;
+    box-shadow: none; /* Remove shadow for subtlety */
+}
+
+.add-beat-button:hover,
+.remove-beat-button:hover {
+    background-color: rgba(171, 218, 214, 0.8); /* Slightly more noticeable on hover */
+    color: rgb(30, 60, 60); /* Darken text slightly */
+    transform: scale(1.1); /* Slight grow effect */
+}
+
+.add-beat-button:active,
+.remove-beat-button:active {
+    background-color: rgba(150, 200, 200, 0.9); /* Active press state */
+    transform: scale(1.0); /* Return to original size */
+}
+
+.beat-controls-container button {
+    outline: none; /* Remove focus outline */
+}
+
+/* Style for the Sun/Moon buttons */
+.sunmoonbutton {
+    width: 80px;
+    height: 80px;
+    background-color: rgba(200, 240, 240, 0.6); /* Subtle color matching the board */
+    border: 1px solid rgba(171, 218, 214, 0.5); /* Faint border */
+    border-radius: 50%;
+    font-family: Arial, sans-serif;
+    font-size: 14px;
+    font-weight: bold;
+    color: rgba(50, 100, 100, 0.8); /* Muted text color */
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: background-color 0.2s ease, transform 0.1s ease;
+    box-shadow: none; /* Remove shadow for subtlety */
+}
+
+.sunmoonbutton:hover {
+    background-color: rgba(171, 218, 214, 0.8); /* Slightly more noticeable on hover */
+    color: rgb(30, 60, 60); /* Darken text slightly */
+    transform: scale(1.1); /* Slight grow effect */
+}
+
+.sunmoonbutton:active {
+    background-color: rgba(150, 200, 200, 0.9); /* Active press state */
+    transform: scale(1.0); /* Return to original size */
+}
+
+/* Style for the Key buttons */
+.keybutton {
+    width: 40px;
+    height: 40px;
+    background-color: rgba(200, 240, 240, 0.6); /* Subtle color matching the board */
+    border: 1px solid rgba(171, 218, 214, 0.5); /* Faint border */
+    border-radius: 50%;
+    font-family: Arial, sans-serif;
+    font-size: 14px;
+    font-weight: bold;
+    color: rgba(50, 100, 100, 0.8); /* Muted text color */
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: background-color 0.2s ease, transform 0.1s ease;
+    box-shadow: none; /* Remove shadow for subtlety */
+}
+
+.keybutton:hover {
+    background-color: rgba(171, 218, 214, 0.8); /* Slightly more noticeable on hover */
+    color: rgb(30, 60, 60); /* Darken text slightly */
+    transform: scale(1.1); /* Slight grow effect */
+}
+
+.keybutton:active {
+    background-color: rgba(150, 200, 200, 0.9); /* Active press state */
+    transform: scale(1.0); /* Return to original size */
+}
+
+/* Style for the Sun/Moon buttons */
+.sunmoonbutton {
+    width: 40px;
+    height: 40px;
+    background-color: rgba(200, 240, 240, 0.6); /* Subtle color matching the board */
+    border: 1px solid rgba(171, 218, 214, 0.5); /* Faint border */
+    border-radius: 50%;
+    font-family: Arial, sans-serif;
+    font-size: 14px;
+    font-weight: bold;
+    color: rgba(50, 100, 100, 0.8); /* Muted text color */
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: background-color 0.2s ease, transform 0.1s ease, box-shadow 0.2s ease;
+    box-shadow: none; /* Remove shadow for subtlety */
+}
+
+.sunmoonbutton:hover {
+    background-color: rgba(171, 218, 214, 0.8); /* Slightly more noticeable on hover */
+    color: rgb(30, 60, 60); /* Darken text slightly */
+    transform: scale(1.1); /* Slight grow effect */
+}
+
+.sunmoonbutton:active {
+    background-color: rgba(150, 200, 200, 0.9); /* Active press state */
+    box-shadow: inset 2px 2px 5px rgba(0, 0, 0, 0.2); /* Create a pressed-in effect */
+    transform: scale(0.95); /* Slight shrink effect to show pressing */
+}
+
+/* Style for the Key buttons */
+.keybutton {
+    width: 40px;
+    height: 40px;
+    background-color: rgba(200, 240, 240, 0.6); /* Subtle color matching the board */
+    border: 1px solid rgba(171, 218, 214, 0.5); /* Faint border */
+    border-radius: 50%;
+    font-family: Arial, sans-serif;
+    font-size: 14px;
+    font-weight: bold;
+    color: rgba(50, 100, 100, 0.8); /* Muted text color */
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: background-color 0.2s ease, transform 0.1s ease, box-shadow 0.2s ease;
+    box-shadow: none; /* Remove shadow for subtlety */
+}
+
+.keybutton:hover {
+    background-color: rgba(171, 218, 214, 0.8); /* Slightly more noticeable on hover */
+    color: rgb(30, 60, 60); /* Darken text slightly */
+    transform: scale(1.1); /* Slight grow effect */
+}
+
+.keybutton:active {
+    background-color: rgba(150, 200, 200, 0.9); /* Active press state */
+    box-shadow: inset 2px 2px 5px rgba(0, 0, 0, 0.2); /* Create a pressed-in effect */
+    transform: scale(0.95); /* Slight shrink effect to show pressing */
+}
+
+/* Base styles for Sun/Moon buttons */
+.sunmoonbutton {
+    width: 80px;
+    height: 80px;
+    background-color: rgba(200, 240, 240, 0.6);
+    border: 1px solid rgba(171, 218, 214, 0.5);
+    border-radius: 50%;
+    font-family: Arial, sans-serif;
+    font-size: 14px;
+    font-weight: bold;
+    color: rgba(50, 100, 100, 0.8);
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: background-color 0.2s ease, transform 0.1s ease, box-shadow 0.2s ease;
+    box-shadow: none;
+}
+
+.sunmoonbutton:hover {
+    background-color: rgba(171, 218, 214, 0.8);
+    color: rgb(30, 60, 60);
+    transform: scale(1.1);
+}
+
+.sunmoonbutton:active {
+    background-color: rgba(150, 200, 200, 0.9);
+    box-shadow: inset 2px 2px 5px rgba(0, 0, 0, 0.2);
+    transform: scale(0.95);
+}
+
+/* Selected state for Sun/Moon buttons */
+.sunmoonbutton.selected {
+    background-color: rgba(120, 200, 255, 0.9); /* Highlighted background for selected */
+    color: rgb(255, 255, 255); /* Change text color for better contrast */
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2); /* Add an outer glow */
+    transform: scale(1.05); /* Slightly larger to signify selection */
+}
+
+/* Base styles for Key buttons */
+.keybutton {
+    width: 40px;
+    height: 40px;
+    background-color: rgba(200, 240, 240, 0.6);
+    border: 1px solid rgba(171, 218, 214, 0.5);
+    border-radius: 50%;
+    font-family: Arial, sans-serif;
+    font-size: 14px;
+    font-weight: bold;
+    color: rgba(50, 100, 100, 0.8);
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: background-color 0.2s ease, transform 0.1s ease, box-shadow 0.2s ease;
+    box-shadow: none;
+}
+
+.keybutton:hover {
+    background-color: rgba(171, 218, 214, 0.8);
+    color: rgb(30, 60, 60);
+    transform: scale(1.1);
+}
+
+.keybutton:active {
+    background-color: rgba(150, 200, 200, 0.9);
+    box-shadow: inset 2px 2px 5px rgba(0, 0, 0, 0.2);
+    transform: scale(0.95);
+}
+
+/* Selected state for Key buttons */
+.keybutton.selected {
+    background-color: rgba(120, 200, 255, 0.9);
+    color: rgb(255, 255, 255);
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+    transform: scale(1.05);
+}
+
+.chordflip-title {
+    color: white; /* Sets the text color to white */
+    font-family: 'Fredoka', sans-serif; /* Uses Fredoka font */
+    font-size: 5em; /* Adjust font size as desired */
+    text-align: center; /* Optional: Centers the text */
+    margin-top: 0; /* Optional: Adjust spacing if needed */
+    height: 40px;
+    margin-top: 20px;;
+}
+
+/* Add this in your CSS */
+.bar-highlight {
+    background-color: #FEFAFFFF; /* Same color as your yellow */
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

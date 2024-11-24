@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8"> <!-- character set -->
+    <title>Chord Flip</title> <!-- title of document -->
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka&display=swap" rel="stylesheet">
+
+    
+    <link rel="stylesheet" href="style.css"> <!-- links css -->
+</head>
+
+<body>
+
+    <h1 class="chordflip-title">ChordFlip</h1>
+
+    
+    <div id="playablearea">
+
+        <!-- KEY CHANGE SECTION-->
+
+
+
+        <!-- BOARD SECTION -->
+        <div id="section2" class="section">
+            <div id="board"></div>
+        </div>
+        
+
+        <!-- CARD LOAD SECTION -->
+        <div id="section3" class="section">
+
+
+        <div id="section1" class="section">
+            <div class="sunmoonbuttons">
+                <button class="sunmoonbutton" id="sunbutton">Major</button>
+                <button class="sunmoonbutton" id="moonbutton">Minor</button>
+            </div>
+            
+        </div>
+
+
+        <div id="chordoptions" draggable="False">
+
+
+            
+            
+            
+            
+            
+            <div class="chordcards">
+                <div id="chordoptioncontainer1" class="chordbox">
+                    <div id="chordoptiondisplay1" class="chord-option-display"></div>
+                    <div id="chordsquare1" class="chordsquare"></div>
+                </div>
+                
+                <div id="chordoptioncontainer2" class="chordbox">
+                    <div id="chordoptiondisplay2" class="chord-option-display"></div>
+                    <div id="chordsquare2" class="chordsquare"></div>
+                </div>
+                
+                <div id="chordoptioncontainer3" class="chordbox">
+                    <div id="chordoptiondisplay3" class="chord-option-display"></div>
+                    <div id="chordsquare3" class="chordsquare"></div>
+                </div>
+                
+                <div id="chordoptioncontainer4" class="chordbox">
+                    <div id="chordoptiondisplay4" class="chord-option-display"></div>
+                    <div id="chordsquare4" class="chordsquare"></div>
+                </div>
+                
+                <div id="chordoptioncontainer5" class="chordbox">
+                    <div id="chordoptiondisplay5" class="chord-option-display"></div>
+                    <div id="chordsquare5" class="chordsquare"></div>
+                </div>
+                
+                <div id="chordoptioncontainer6" class="chordbox">
+                    <div id="chordoptiondisplay6" class="chord-option-display"></div>
+                    <div id="chordsquare6" class="chordsquare"></div>
+                </div>
+                
+                <div id="chordoptioncontainer7" class="chordbox">
+                    <div id="chordoptiondisplay7" class="chord-option-display"></div>
+                    <div id="chordsquare7" class="chordsquare"></div>
+                </div>
+            </div>
+
+           
+
+
+            
+
+        </div>
+
+        <div id="section1" class="section">
+
+
+
+            <div class="keybuttons">
+                <!-- KEYBUTTONS -->
+                <button class="keybutton" id="C-Button">C</button>
+                <button class="keybutton" id="C#-Button">C#</button>
+                <button class="keybutton" id="D-Button">D</button>
+                <button class="keybutton" id="Eb-Button">Eb</button>
+                <button class="keybutton" id="E-Button">E</button>
+                <button class="keybutton" id="F-Button">F</button>
+                <button class="keybutton" id="F#-Button">F#</button>
+                <button class="keybutton" id="G-Button">G</button>
+                <button class="keybutton" id="Ab-Button">Ab</button>
+                <button class="keybutton" id="A-Button">A</button>
+                <button class="keybutton" id="Bb-Button">Bb</button>
+                <button class="keybutton" id="B-Button">B</button>
+                <!-- TRASHCAN -->
+                
+            </div>
+
+            <!--<div id="trashcan" class="cardslot trashcan" ></div>-->
+            
+        </div>
+
+
+
+        
+        
+        <!-- Major/Minor Buttons ---------------------------------------------------------->
+
+
+
+    </div>
+
+    
+        
+    <div id="cardPopup" class="popup-modal hidden">
+        <div class="popup-content">
+            <h2>Chord Options</h2>
+            <div class="popupimagescontainer">
+                <div id="popupcurrentcard">
+                    <p>Main</p>
+                    <img id="popupDiatonicImage" class="popup-card-image" src="" alt="Diatonic">
+                </div>
+                <div id="popupflippedcard">
+                    <p>Reversed</p>
+                    <img id="popupReversedImage" class="popup-card-image" src="" alt="Reversed">
+                </div>
+                <div id="popupSus2card">
+                    <p>Sus2</p>
+                    <img id="popupSus2Image" class="popup-card-image" src="" alt="Sus2">
+                </div>
+                <div id="popupSus4card">
+                    <p>Sus4</p>
+                    <img id="popupSus4Image" class="popup-card-image" src="" alt="Sus4">
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    
+    
+    
+
+    <script src="index.js"></script> 
+
+</div>
+
+</body>
+</html>
