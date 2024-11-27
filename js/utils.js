@@ -260,7 +260,7 @@ function refreshSymbols() {
 }
 
 
-function flatKey(key) {
+function flatKeyMajor(key) {
     if (key.length == 1) {
         if ((key == "F") || (key == "C"))  {
             return true;
@@ -273,6 +273,28 @@ function flatKey(key) {
         return (key[1] == "b");
     }
 }
+
+
+function flatKeyMinor(key) {
+  const minorflatkeys = ["D", "G", "C", "F", "Bb", "Eb", "Ab"];
+  return minorflatkeys.includes(key);
+
+}
+
+function flatKey(key) {
+  if (sunmoon == "sun") {
+       return flatKeyMajor(key);
+  }
+  else if (sunmoon == "moon") {
+      return flatKeyMinor(key);
+  }
+  else {
+     throw new Error(`Unsupported sunmoon: ${sunmoon}`);
+  }
+
+}
+
+
 function transposeChord(key, chord) {
     var notesSharp = ["C", "C#", "D", "D#","E", "F", "F#", "G", "G#", "A", "A#", "B"];
     var notesFlat = ["C", "Db", "D", "Eb","E", "F", "Gb", "G", "Ab", "A", "Bb", "B"];
@@ -305,7 +327,7 @@ function transposeChord(key, chord) {
 
 
 
-    var curInd = chromaticScale.indexOf(chordRaw);
+    var curInd = notesFlat.indexOf(chordRaw);
     // if (curInd == -1) {
     //     curInd = notesSharp.indexOf(chordRaw);
     // }
