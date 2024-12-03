@@ -24,8 +24,8 @@
     const xmlns = "http://www.w3.org/2000/svg";
     const svg = document.getElementById('pianoSVG');
 
-    const f =  0.7; // Size factor
-    const numOctaves = 2; // num octaves
+    const f =  0.2; // Size factor
+    const numOctaves = 4; // num octaves
 
     // key sizes
     const whiteKeyWidth = 67 * f;
@@ -82,9 +82,9 @@
           blackKey.setAttribute('y', 0);
           blackKey.setAttribute('width', blackKeyWidth);
           blackKey.setAttribute('height', blackKeyHeight);
-          blackKey.setAttribute('fill', 'black');
+          blackKey.setAttribute('fill', '#b8b8b8');
           blackKey.setAttribute('stroke', 'black');
-          blackKey.setAttribute('stroke-width', '2');
+          blackKey.setAttribute('stroke-width', '1');
           blackKey.setAttribute('key-type', 'black');
           blackKey.setAttribute("note-name", chromaticScale[absoluteKeyNum % chromaticScale.length]);
           blackKey.addEventListener("click", keyClicked);
@@ -143,7 +143,8 @@
 
      var pos = chordPositions(flavour);
      pos.forEach((p) => {
-        allKeys[r+p].setAttribute('fill', 'lightblue');
+        allKeys[r+p].setAttribute('fill', 'red');
+        allKeys[r+p].setAttribute('stroke', 'black');
       });
 
      document.getElementById('chord-name').innerHTML = "  " +  chromaticScale[r].replace('s', '#') + flavourNames[flavour];
@@ -193,7 +194,14 @@
 
   function clearHighlights() {
      allKeys.forEach((k) => {
-        k.setAttribute('fill', k.attributes['key-type'].value);
+        if (isWhiteKey(k)) {
+          k.setAttribute('fill', k.attributes['key-type'].value);
+        }
+        else {
+          k.setAttribute('fill', '#b8b8b8');
+        }
+        
+        k.setAttribute('stroke', 'black');
      });
 
   }
