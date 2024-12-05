@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Piano Keyboard with SVG</title>
+  <style>
+  </style>
+</head>
+<body>
+
+  <div style="margin-left: 50px; margin-bottom:50px">
+    <h1> Try keyboard 2 </h1>
+    <button onclick="buttonPushed(event);" style="margin-right:10px">Random chord</button>
+    <button onclick="noteButtonPushed(event);" style="margin-right:10px">Play note</button>
+  </div>
+
+  <div style="margin-left:50px">
+    <svg id="pianoSVG" width="1600" height="250" >
+    </svg>
+    <h1 id="chord-name-heading"><span id="chord-name"></span><small><small><small><span id="octave-num" style="margin-left: 10px"></span> </small></small></small></h1>
+  </div>
+
+  <script>
+    const xmlns = "http://www.w3.org/2000/svg";
+    const svg = document.getElementById('pianoSVG');
+
+    const f =  0.7; // Size factor
+    const numOctaves = 3; // num octaves
+
+    // key sizes
+    const whiteKeyWidth = 67 * f;
+    const whiteKeyHeight = 236 * f;
+    const blackKeyWidth = 36 * f;
+    const blackKeyHeight = 136 * f;
+
+    const numWhiteKeys = numOctaves * 7;
+    const blackKeyOffsets = [0, 1, 3, 4, 5]; // Positions of black keys relative to white keys (C#, D#, F#, G#, A#)
+    var allKeys = [];
+    var auds = {};
+    var noteAuds = {};
+    var chromaticScale = ["C", "Cs", "D", "Eb", "E", "F", "Fs", "G", "Ab", "A", "Bb", "B"];
+
+
+    var chromaticScaleReal = ["C", "C#", "D", "Eb", "E", "F", "F#", "G", "Ab", "A", "Bb", "B"];
+    var noteFolder = '2489__jobro__piano-ff';
+    var noteFileMiddle = '__jobro__piano-ff-';
+    const noteFileStartingNum = 39148;
+
+    var noteToNum;
+    var numToNote;
+
+
+    window.onload = function() {
+
+       loadNoteWavs();
+
+       drawPiano();
+    }
+
+    function isWhiteKey(k) {
+      return (k.attributes['key-type'].value == 'white');
+
+     }
+
+
+     function createWhiteKey(whiteKeyNum, absoluteKeyNum) {
+
+        const whiteKey = document.createElementNS(xmlns, "rect");
+
+        whiteKey.setAttribute('x', whiteKeyNum * whiteKeyWidth);
+        whiteKey.setAttribute('y', 0);
+        whiteKey.setAttribute('width', whiteKeyWidth);
+        whiteKey.setAttribute('height', whiteKeyHeight);
+        whiteKey.setAttribute('fill', 'white');
+        whiteKey.setAttribute('stroke', 'black');
+        whiteKey.setAttribute('key-type', 'white');
+        whiteKey.setAttribute("note-name", chromaticScale[absoluteKeyNum % chromaticScale.length]);
+        whiteKey.setAttribute("note-num", absoluteKeyNum + 28);
+
+        whiteKey.addEventListener("click", keyClicked);
+
+        return whiteKey;
+     }
+
+     function createBlackKey(whiteKeyNum, absoluteKeyNum) {
+
+          const blackKey = document.createElementNS(xmlns, "rect");
+
+          const blackKeyX = ((whiteKeyNum+1) * whiteKeyWidth) - (blackKeyWidth / 2);
+          blackKey.setAttribute('x', blackKeyX);
+          blackKey.setAttribute('y', 0);
+          blackKey.setAttribute('width', blackKeyWidth);
+          blackKey.setAttribute('height', blackKeyHeight);
+          blackKey.setAttribute('fill', '#b8b8b8');
+          blackKey.setAttribute('stroke', 'black');
+          blackKey.setAttribute('stroke-width', '1');
+          blackKey.setAttribute('key-type', 'black');
+          blackKey.setAttribute("note-name", chromaticScale[absoluteKeyNum % chromaticScale.length]);
+          blackKey.setAttribute("note-num", absoluteKeyNum + 28);
+          blackKey.addEventListener("click", keyClicked);
+          return blackKey;
+     }
+
+
+    function drawPiano() {
+
+
+      for (var i = 0; i < numWhiteKeys; i++) {
+        // create white key
+
+        var whiteKey = createWhiteKey(i, allKeys.length);
+        allKeys.push(whiteKey);
+
+
+       if (blackKeyOffsets.includes(i % 7))
+      {
+          //If appropriate, create black key
+
+          var blackKey = createBlackKey(i, allKeys.length);
+          allKeys.push(blackKey);
+
+       }
+
+      }
+
+
+      // Append white keys to svg element
+       allKeys.forEach((k) => {
+           if (isWhiteKey(k)) {
+             svg.appendChild(k);
+           }
+
+       });
+
+      // Append black keys to svg element (black keys go "on top")
+       allKeys.forEach((k) => {
+           if (isBlackKey(k)) {
+             svg.appendChild(k);
+           }
+
+       });
+
+
+    }
+
+
+   function playAndShowChord(r, flavour) {
+     var flavourNames = ['', 'm'];
+     //var chordFullName = chromaticScale[r] + flavourNames[flavour];
+     //auds[chordFullName].play();
+
+     clearHighlights();
+
+     var noteNumsToPlay = [];
+
+     var pos = chordPositions(flavour);
+     pos.forEach((p) => {
+        allKeys[r+p].setAttribute('fill', 'red');
+        allKeys[r+p].setAttribute('stroke', 'black');
+        noteNumsToPlay.push(28 + r + p);
+      });
+
+     noteNumsToPlay.forEach((n) => {
+        playNote(n);
+
+     });
+     document.getElementById('chord-name').innerHTML = "  " +  chromaticScale[r].replace('s', '#') + flavourNames[flavour];
+
+   }
+
+     function playAndShowChordFromNoteNum(noteNum, flavour) {
+     var flavourNames = ['', 'm', '7', 'Maj7', '6'];
+     //var chordFullName = chromaticScale[r] + flavourNames[flavour];
+     //auds[chordFullName].play();
+
+     clearHighlights();
+
+     var noteNumsToPlay = [];
+
+     var pos = chordPositions(flavour);
+     pos.forEach((p) => {
+        noteNumToPlay = noteNum + p;
+        var k = getSVGKeyWithNoteNum(noteNumToPlay);
+        if (k == null) {
+
+        }
+        else {
+          k.setAttribute('fill', 'red');
+          k.setAttribute('stroke', 'black');
+          }
+
+       // allKeys[noteNum+p].setAttribute('fill', 'red');
+        //allKeys[noteNum+p].setAttribute('stroke', 'black');
+        noteNumsToPlay.push(noteNumToPlay);
+      });
+
+     noteNumsToPlay.forEach((n) => {
+        playNote(n);
+
+     });
+     //document.getElementById('chord-name').innerHTML = "  " +  chromaticScale[r].replace('s', '#') + flavourNames[flavour];
+     var noteName =  numToNote[noteNum];
+    noteNameNoOctave = noteName.slice(0, noteName.length-1);
+    var octave = noteName.slice(noteName.length-1);
+
+    document.getElementById('chord-name').innerHTML = "  " +  noteNameNoOctave + flavourNames[flavour];
+
+    document.getElementById('octave-num').innerHTML = octave;
+   }
+
+  function buttonPushed(e) {
+
+     var r = Math.floor(Math.random() * chromaticScale.length);   // pick root note number in chromatic scale
+     var flavour = Math.floor(Math.random() * 5);   // pick flavour (major or minor)
+
+     playAndShowChordFromNoteNum(r+28, flavour);
+
+  }
+
+   function noteButtonPushed(e) {
+
+     //var r = Math.floor(Math.random() * chromaticScale.length);   // pick root note number in chromatic scale
+     //var flavour = Math.floor(Math.random() * 2);   // pick flavour (major or minor)
+
+     //playAndShowChord(r, flavour);
+     playNote(40);
+     playNote(43);
+     playNote(47);
+     playNote(51);
+
+
+  }
+
+  function getSVGKeyWithNoteNum(noteNum) {
+
+      for (k of allKeys) {
+          if (k.attributes["note-num"].value == String(noteNum)) {
+            return k;
+          }
+      }
+      // allKeys.forEach((k) => {
+      //   if (k.attributes["note-num"].value == String(noteNum)) {
+      //     return k;
+      //   }
+      // });
+      return null;
+  }
+
+  function keyClicked(event) {
+      var noteClicked = event.target.attributes["note-name"].value;
+      var r = chromaticScale.indexOf(noteClicked); // get root note number in chromatic scale
+
+      flavour = 0;
+      if (pressedKeys[77]) { //  set flavour to minor if "m" key  is pressed down
+        flavour = 1;
+      }
+      else if (pressedKeys[55]) { // "7"
+        flavour = 2;
+      }
+      else if (pressedKeys[56]) {  // "8"
+         flavour = 3;
+      }
+      else if (pressedKeys[54]) {  // "6"
+         flavour = 4;
+      }
+
+      playAndShowChordFromNoteNum(parseInt(event.target.attributes["note-num"].value), flavour);
+
+
+  }
+
+  function chordPositions(flavour=0) {
+     if (flavour == 1) {
+        return [0, 3, 7];
+     }
+     else if (flavour == 0) {
+         return [0, 4, 7];
+     }
+     else if (flavour == 2) {
+         return [0, 4, 7, 10];
+     }
+     else if (flavour == 3) {
+         return [0, 4, 7, 11];
+     }
+     else if  (flavour == 4) {
+         return [0, 4, 7, 9];
+     }
+
+  }
+
+
+
+  function isBlackKey(k) {
+      return (k.attributes['key-type'].value == 'black');
+
+  }
+
+
+  function clearHighlights() {
+     allKeys.forEach((k) => {
+        if (isWhiteKey(k)) {
+          k.setAttribute('fill', k.attributes['key-type'].value);
+        }
+        else {
+          k.setAttribute('fill', '#b8b8b8');
+        }
+
+        k.setAttribute('stroke', 'black');
+     });
+
+  }
+
+  function getNoteMappings() {
+
+        var numToNote = {};
+        var octave = 0;
+
+        for (i=1; i <= 88; ++i) {
+
+          var note = chromaticScaleReal[(i-1 + 9) % chromaticScaleReal.length];
+          if (note == "C") {
+            octave +=1;
+          }
+          var noteVal = note + octave;
+          numToNote[i]   = noteVal;
+        }
+
+        var noteToNum = {};
+        for (const [key, value] of Object.entries(numToNote)) {
+                noteToNum[value] = key;
+        }
+        var qq = 1;
+
+        return {"noteToNum": noteToNum, "numToNote": numToNote};
+
+
+
+
+  }
+
+
+  function loadNoteWavs() {
+      for (i = 1; i <= 88; ++i) {
+        var fullFileName = getNoteFileName(i);
+        var aud = new Audio(fullFileName); //#t=0.0,0.5")
+        noteAuds[i] = aud;
+
+      }
+
+  }
+  function getNoteFileName(noteNum) {
+      var fileNum = noteFileStartingNum + (noteNum-1);
+      if (fileNum > 39191) {
+          fileNum +=1;  // file names skipped 39192 for some rewason
+      }
+      var noteNumPadded = String(noteNum).padStart(3,"0");
+      var fullFileName = `${noteFolder}/${fileNum}${noteFileMiddle}${noteNumPadded}.wav`;
+      return fullFileName;
+
+  }
+  function playNote(noteNum) {
+      noteAuds[noteNum].currentTime = 0.0;
+      noteAuds[noteNum].play();
+
+      var qq = 1;
+  }
+
+
+
+
+
+  var pressedKeys = {};
+  window.onkeyup = function(e) {
+    pressedKeys[e.keyCode] = false;
+    qq = 1;
+  }
+  window.onkeydown = function(e) {
+    pressedKeys[e.keyCode] = true;
+    qq = 1;
+  }
+  var mappings = getNoteMappings();
+  noteToNum = mappings["noteToNum"];
+  numToNote = mappings["numToNote"];
+
+  //playNote(1);
+
+  </script>
+</body>
+</html>
