@@ -344,6 +344,7 @@
       for (i = 1; i <= 88; ++i) {
         var fullFileName = getNoteFileName(i);
         var aud = new Audio(fullFileName); //#t=0.0,0.5")
+        aud.load();
         noteAuds[i] = aud;
 
       }
